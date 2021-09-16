@@ -1,0 +1,10 @@
+@startuml
+class Record
+class Movie
+class Song
+class Customer
+
+Record <|-- Movie
+Record <|-- Song
+Record --   Customer
+@enduml
