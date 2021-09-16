@@ -64,4 +64,51 @@ Cars can be moved between offices
 | Damaged   | x        |          | x   |       |             | x      |
 
 # Class Diagram
-![](diagram.png)
+```plantuml
+abstract class Period
+{
+    Date d1
+    Date d2
+}
+class Lease
+{
+    Customer customer
+    Car car
+    int Deposit
+    bool insurance
+}
+class Reservation
+{
+    Customer customer
+    Car car
+}
+class Maintenance
+{
+    Car car
+}
+class Car
+{
+    int Price
+    Status status = Reserved | Rented | Maintenance | Available
+}
+class Customer
+{
+    License license
+}
+class Employee
+
+Lease "0 or 1" *-- "1" Car
+Lease "1" *-- "1" Customer
+
+Car "1" *-- "0 or 1" Maintenance
+
+Period <|-- Reservation
+Period <|-- Lease
+Period <|-- Maintenance
+
+Reservation "0 or 1" *-- "1" Car
+Reservation "1" *-- "1" Customer
+
+Employee "1" -- "0*" Customer
+Employee "1" -- "0*" Lease
+```
