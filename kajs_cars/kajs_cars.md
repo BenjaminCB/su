@@ -125,6 +125,7 @@ Lease "1" *-- "1" Customer
 Lease "1" *-- "1" Car
 ```
 
+# Behaviour
 ```plantuml
 [*] --> Free : Move into station
 Free --> [*] : Move out of station
@@ -134,4 +135,14 @@ Repairing -> Free : Deliver
 
 Free -left-> Rented : Rent car
 Rented -> Free : Deliver
+```
+
+```plantuml
+[*] -> HasReserved : Reserve price group
+HasReserved -> HasRented : Rent a car
+HasRented -> [*] : Deliver car
+```
+
+```plantuml
+
 ```
