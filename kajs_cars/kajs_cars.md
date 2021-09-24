@@ -54,61 +54,84 @@ Cars can be moved between offices
 - O: Employee, Car, Lease, Costumer, Reservation, Period
 - R: The system is a tool that gives costumers and employees and overview of the cars, and helps in the rental process. Costumers can see which cars are available in the price ranges. Employees can see all the cars and their current status and when they should be services as well as help them fill out a lease properly.
 
+# Classes
+- Customer
+- Car
+- Station
+- Agreement
+    - Lease
+    - Reservation
+- Price group
+    - A
+    - B
+    - C
+    - D
+- Schedule
+    - Free
+    - Repair
+    - Other station
+    - Rented
+
+# Events
+- Move
+- Reserve
+- Rent
+- Deliver
+- Repair
+
 # Event Table
-|           | Employee | Customer | Car | Lease | Reservation | Period |
-| --------- | :------: | :------: | :-: | :---: | :---------: | :----: |
-| Reserved  |          | x        | x   |       | x           |        |
-| Rented    | x        | x        | x   | x     |             | x      |
-| Delivered | x        |          | x   | x     |             |        |
-| Timeout   |          |          | x   |       |             | x      |
-| Damaged   | x        |          | x   |       |             | x      |
+|         | Car | Customer | Station | Agreement | Price Group | Schedule |
+| ------- | :-: | :------: | :-----: | :-------: | :---------: | :------: |
+| Move    | x   |          | x       |           |             | x        |
+| Reserve |     | x        |         | x         | x           |          |
+| Rent    | x   | x        |         | x         |             | x        |
+| Deliver | x   | x        |         |           |             |          |
+| Repair  | x   |          |         |           |             | x        |
 
 # Class Diagram
 ```plantuml
+class Schedule
 abstract class Period
-{
-    Date d1
-    Date d2
-}
+class Free
+class Repair
+class Rented
+
+Schedule "1" *-- "*" Period
+Period <|-- Free
+Period <|-- Repair
+Period <|-- Rented
+
+abstract class Agreement
 class Lease
-{
-    Customer customer
-    Car car
-    int Deposit
-    bool insurance
-}
 class Reservation
-{
-    Customer customer
-    Car car
-}
-class Maintenance
-{
-    Car car
-}
+
+Agreement <|-- Lease
+Agreement <|-- Reservation
+
+class Station
 class Car
-{
-    int Price
-    Status status = Reserved | Rented | Maintenance | Available
-}
+class PriceGroup
 class Customer
-{
-    License license
-}
-class Employee
 
-Lease "0 or 1" *-- "1" Car
+Station "1" *-- "*" Car
+Station "1" *-- "*" Agreement
+Car "1" *-- "1" Schedule
+Car "*" *-- "1" PriceGroup
+
+Reservation "*" *-- "1" Costumer
+Reservation "*" *-- "1" PriceGroup
+
 Lease "1" *-- "1" Customer
+Lease "1" *-- "1" Car
+```
 
-Car "1" *-- "0 or 1" Maintenance
+```plantuml
+[*] --> Free : Move into station
+Free --> [*] : Move out of station
 
-Period <|-- Reservation
-Period <|-- Lease
-Period <|-- Maintenance
+Free -> Repairing : Repair car
+Repairing -> Free : Deliver
 
-Reservation "0 or 1" *-- "1" Car
-Reservation "1" *-- "1" Customer
-
-Employee "1" -- "0*" Customer
-Employee "1" -- "0*" Lease
+Free -left-> Rented : Rent car
+Rented -> Free : Deliver
 ```
