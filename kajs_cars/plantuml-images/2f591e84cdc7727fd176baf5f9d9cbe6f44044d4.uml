@@ -1,0 +1,7 @@
+@startuml
+[*] --> Renting : Reserve
+Renting -> Renting : Reserve
+Renting -> Renting : Pay
+Renting -> Renting : Deliver
+Renting --> [*] : Pay
+@enduml

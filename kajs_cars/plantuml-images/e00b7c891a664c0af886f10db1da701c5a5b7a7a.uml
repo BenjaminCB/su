@@ -1,0 +1,52 @@
+@startuml
+abstract class Agreement
+class Lease
+class Reservation
+
+class Station
+abstract class Customer
+{
+    license
+}
+class Private
+class Corporate
+{
+    account
+}
+
+class Car
+{
+    price
+    mileage
+}
+
+class PriceGroup
+class Schedule
+abstract class Period
+class Free
+class Repair
+class Rented
+
+Schedule "1" *-- "*" Period
+Period <|-- Free
+Period <|-- Repair
+Period <|-- Rented
+
+Agreement <|-- Lease
+Agreement <|-- Reservation
+
+
+Station "1" *-- "*" Car
+Station "1" *-- "*" Agreement
+Car "1" *-- "1" Schedule
+Car "*" *-- "1" PriceGroup
+
+Reservation "*" *-- "1" Customer
+Reservation "*" *-- "1" PriceGroup
+
+Customer <|-- Private
+Customer <|-- Corporate
+
+Lease "*" *-- "1" Customer
+Lease "1" *-- "1" Car
+@enduml

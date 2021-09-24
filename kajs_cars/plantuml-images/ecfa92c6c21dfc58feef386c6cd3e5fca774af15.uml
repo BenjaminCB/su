@@ -1,0 +1,7 @@
+@startuml
+[*] -> HasReserved : Reserve
+HasReserved -> HasRented : Pay
+HasReserved -> [*] : Cancel
+HasRented -> HasDelivered : Deliver car
+HasDelivered -> [*] : Pay
+@enduml

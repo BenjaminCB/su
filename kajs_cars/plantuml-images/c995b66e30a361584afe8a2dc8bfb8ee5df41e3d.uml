@@ -1,0 +1,10 @@
+@startuml
+[*] --> Free : Move into station
+Free --> [*] : Move out of station
+
+Free -> Repairing : Repair car
+Repairing -> Free : Deliver
+
+Free -left-> Rented : Rent car
+Rented -> Free : Deliver
+@enduml
