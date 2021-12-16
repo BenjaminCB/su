@@ -77,3 +77,5 @@ class CustomerRole
 Person "1" *-- "1..*" EmployeeRole
 Person "1" *-- "1..*" CustomerRole
 ```
+### Extra from the lecture 2
+![](difficulties.png)

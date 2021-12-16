@@ -3,7 +3,11 @@
 ## Section 3.6, exercise 4
 **What is a common event?**
 
-A common event is an event involving two or more objects. To take an example from the book, "The house looked nice after Bob painted it.". There are two objects, the house and bob, and a common event painting it.
+A common event is an event involving two or more objects. To take an example from the book:
+
+> The house looked nice after Bob painted it.
+
+There are two objects, the house and bob, and a common event painting it.
 
 ## Section 3.6, exercise 9
 **What are the basic criteria for selecting classes and events?**
@@ -16,7 +20,7 @@ For classes:
 
 For events:
 - Is the event instantaneous?
-- Is the event atomic? (we do not want to split the event into sub-events)
+- Is the event atomic? (we do not want an event that encompasses multiple parts)
 - Can the event be identified when it happens?
 
 ## Section 3.6, exercise 10
@@ -59,3 +63,4 @@ Possible events are:
 | Unanswered      |            |             | x    |       |
 
 Should probably have different names for insert and delete for the calling log, because the phone book and the calling log are definitely two different things, that are both important classes.
+
