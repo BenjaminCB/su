@@ -3,7 +3,7 @@ Section 4.8, exercise 3
 
 **Why is multiplicity only specified on object structures?**
 
-Probably because it make much sense to put it in classes.
+A class is an abstraction over all types of objects. It does not make sense to have to say that a multiple classes of the same type inherit from another class. It does however make sense to say that that a class contains a number of objects from another class.
 
 # 2.
 Section 4.8, exercise 5
