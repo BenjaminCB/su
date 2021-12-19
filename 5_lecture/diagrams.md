@@ -2,17 +2,23 @@
 state Member
 state join1 <<fork>>
 state join2 <<fork>>
+state join3 <<fork>>
+state join4 <<fork>>
 
 [*] -> Member : joined(date)
 
-Member -up-> join1 : consumption invoiced(date, amount)
 join1 -down-> Member
+Member -up-> join1 : consumption invoiced(date, amount)
 
-Member -up-> join2 : invoice paid(date)
 join2 -down-> Member
+Member -up-> join2 : invoice paid(date)
 
-Member -down-> Member : movie selected
-Member -down-> Member : song selected
+join3 -up-> Member
+Member -down-> join3 : movie selected
+
+join4 -up-> Member
+Member -down-> join4 : song selected
+
 Member -> [*] : left(date)
 ```
 
