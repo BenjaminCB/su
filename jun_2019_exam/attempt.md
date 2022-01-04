@@ -170,8 +170,19 @@ package Server {
     package ServerTechnicalPlatform
 }
 
-ClientSystemInterface .> ServerSystemInterface
-ServerSystemInterface .> ClientSystemInterface
+package Sensor {
+    package SensorInterface {
+        package SensorSystemInterface
+        package SensorUserInterface
+    }
+
+    package SensorFunction
+    package SensorModel
+    package SensorTechnicalPlatform
+}
+
+ClientSystemInterface ..> ServerSystemInterface
+ServerSystemInterface ..> ClientSystemInterface
 
 ClientSystemInterface ..> ClientFunction
 ClientSystemInterface ..> ClientTechnicalPlatform
@@ -186,6 +197,16 @@ ServerUserInterface ..> ServerFunction
 ServerUserInterface ..> ServerTechnicalPlatform
 ServerFunction ..> ServerModel
 ServerModel ..> ServerTechnicalPlatform
+
+SensorSystemInterface ..> ServerSystemInterface
+ServerSystemInterface ..> SensorSystemInterface
+
+SensorSystemInterface ..> SensorFunction
+SensorSystemInterface ..> SensorTechnicalPlatform
+SensorUserInterface ..> SensorFunction
+SensorUserInterface ..> SensorTechnicalPlatform
+SensorFunction ..> SensorModel
+SensorModel ..> SensorTechnicalPlatform
 ```
 
 # Assignment 3
